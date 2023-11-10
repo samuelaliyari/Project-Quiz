@@ -63,9 +63,6 @@ let data = [
     }
 ]
 
-
-
-
 const contentBox = document.querySelector('#content');
 
 const creatQuiz = () => {
@@ -86,11 +83,11 @@ const creatQuiz = () => {
                 if (event.target.textContent === elt.answer) {
                     event.target.style.backgroundColor = "green";
                     allButton[i].removeEventListener('click', checkAnswer);
+
                 } else if (event.target.textContent !== elt.answer) {
                     event.target.style.backgroundColor = "red";
                     allButton[i].removeEventListener('click', checkAnswer);
                 }
-
             }
         }
         for (let i = 0; i < elt.choice.length; i++) {
