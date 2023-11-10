@@ -63,45 +63,47 @@ let data = [
     }
 ]
 
-// {
-//     url: "https://cdn.playbuzz.com/cdn//f063e8fe-ad57-485e-8211-ed2ee0d9a205/4a864049-816a-479e-8736-51740e8b724b.jpg",
-//     question: "Which ocean lies on the east coast of the United States?",
-//     choice: ["Eastern", "Pacific", "Indian", "Atlantic"],
-//     answer: "Atlantic"
-// }
+
 
 
 const contentBox = document.querySelector('#content');
 
-
-
-
 const creatQuiz = () => {
     data.forEach(elt => {
+        let answer;
         const image = document.createElement('img');
         const question = document.createElement('h3');
         const buttonWrapper = document.createElement('article');
 
-        contentBox.prepend(image, question,buttonWrapper);
+        contentBox.prepend(image, question, buttonWrapper);
         question.textContent = elt.question
 
         image.src = `${elt.url}`
+
+        const checkAnswer = function (event) {
+            const allButton = document.querySelectorAll('button');
+            for (let i = 0; i < allButton.length; i++) {
+                if (event.target.textContent === elt.answer) {
+                    event.target.style.backgroundColor = "green";
+                    allButton[i].removeEventListener('click', checkAnswer);
+                } else if (event.target.textContent !== elt.answer) {
+                    event.target.style.backgroundColor = "red";
+                    allButton[i].removeEventListener('click', checkAnswer);
+                }
+
+            }
+        }
         for (let i = 0; i < elt.choice.length; i++) {
-            const answer = document.createElement('button');
+            answer = document.createElement('button');
             buttonWrapper.appendChild(answer);
             answer.textContent = elt.choice[i];
-            answer.addEventListener("click", () => {
-                if (answer.innerText === elt.answer) {
-                    answer.style.backgroundColor = "green";
-                } else {
-                    answer.style.backgroundColor = "red";
-                }
-            })
+            answer.addEventListener("click", checkAnswer);
         }
     });
 
 }
-creatQuiz()
+
+creatQuiz();
 
 
 
