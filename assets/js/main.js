@@ -58,12 +58,19 @@ let data = [
     {
         url: "https://cdn.playbuzz.com/cdn//f063e8fe-ad57-485e-8211-ed2ee0d9a205/1226f177-dc1a-4142-8875-bdaa177717d7.jpg",
         question: "Which is the largest body of water?",
-        choice: ["indian Ocean", "Pacific Ocean", "Atlantic Ocean", "Nile River"],
+        choice: ["indian Ocean", "Pacific Ocean", "Atlantic Ocean", "Nile-River"],
         answer: "Pacific Ocean"
     }
 ]
 
+
 const contentBox = document.querySelector('#content');
+let points = 0;
+const pointBox = document.createElement("p");
+pointBox.textContent = points
+document.body.appendChild(pointBox);
+
+
 
 const creatQuiz = () => {
     data.forEach(elt => {
@@ -72,7 +79,7 @@ const creatQuiz = () => {
         const question = document.createElement('h3');
         const buttonWrapper = document.createElement('article');
 
-        contentBox.prepend(image, question, buttonWrapper);
+        contentBox.append(image, question, buttonWrapper);
         question.textContent = elt.question
 
         image.src = `${elt.url}`
@@ -80,27 +87,36 @@ const creatQuiz = () => {
         const checkAnswer = function (event) {
             const allButton = document.querySelectorAll('button');
             for (let i = 0; i < allButton.length; i++) {
-                if (event.target.textContent === elt.answer) {
+                if (event.target.textContent === elt.answer.toString()) {
                     event.target.style.backgroundColor = "green";
                     allButton[i].removeEventListener('click', checkAnswer);
-
+                    if (allButton[i].textContent === elt.answer.toString()) {
+                        points++
+                        pointBox.textContent = points
+                    }
                 } else if (event.target.textContent !== elt.answer) {
                     event.target.style.backgroundColor = "red";
                     allButton[i].removeEventListener('click', checkAnswer);
+                    for (let i = 0; i < allButton.length; i++) {
+                        if (allButton[i].innerText === elt.answer.toString()) {
+                            allButton[i].style.backgroundColor = "green";
+                        }
+                    }
                 }
+
             }
         }
         for (let i = 0; i < elt.choice.length; i++) {
             answer = document.createElement('button');
             buttonWrapper.appendChild(answer);
             answer.textContent = elt.choice[i];
-            answer.addEventListener("click", checkAnswer);
+            answer.addEventListener("click", checkAnswer)
         }
     });
 
 }
 
-creatQuiz();
+creatQuiz()
 
 
 

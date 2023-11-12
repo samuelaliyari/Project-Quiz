@@ -25,41 +25,45 @@ body {
   background-color: rgb(32, 32, 32);
   border: 5px double #FFC300;
   color: #d8a600;
-  padding: 3%;
   padding-bottom: 0;
   margin: 1%;
   text-align: center;
 }
 body p {
   position: fixed;
-  z-index: 99;
+  z-index: 1;
   right: 5%;
-  top: 5%;
+  top: 80%;
   border-radius: 50%;
-  width: 5%;
-  height: 8%;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(32, 32, 32);
-  font-size: 2rem;
-  z-index: 99;
-  background-color: #d8a600;
+  font-size: 3rem;
+  border: 8px solid black;
+  background-color: #ffc504;
 }
 body h1 {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 4rem;
-  font-weight: 300;
+  font-weight: 200;
   text-shadow: 0 0 0.4rem black;
   letter-spacing: 0.2rem;
   margin-bottom: 5%;
+  padding-top: 5%;
 }
 body div {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
+body div section {
+  border-bottom: 3px solid #FFC300;
+}
 body div h3 {
+  font-size: 2rem;
   margin-top: 3%;
   width: 100%;
   transition: transform 300ms ease-in-out;
@@ -70,7 +74,7 @@ body div h3:hover {
 body div img {
   width: 800px;
   margin: 5% auto;
-  border: 5px solid #a27c00;
+  border: 5px double #a27c00;
   padding: 2%;
 }
 body div article {
@@ -79,7 +83,7 @@ body div article {
   gap: 3%;
   padding: 0 5% 8% 3%;
   margin-top: 5%;
-  border-bottom: 3px dotted #FFC300;
+  border-bottom: 3px solid #FFC300;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -87,14 +91,17 @@ body div article:nth-last-of-type(1) {
   border: none;
 }
 body div article button {
-  padding: 2% 4%;
-  font-size: 1.3rem;
+  padding-block: 2%;
+  font-size: 2rem;
   background-color: rgba(216, 166, 0, 0);
   color: #FFC300;
-  border: 1px solid #FFC300;
+  border: 3px solid #FFC300;
   border-radius: 1rem;
   transition: transform 200ms ease-in-out;
   margin: 1%;
+  flex-basis: 17%;
+  width: 100%;
+  flex: 1;
 }
 body div article button:hover {
   transform: scale(110%);
